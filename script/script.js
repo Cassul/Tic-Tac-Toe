@@ -9,7 +9,7 @@ function todoClickHandler(event) {
 	counter++;
 	if (counter % 2 != 0) {
 		var cross = document.createElement('img');
-		cross.setAttribute('src', 'o.png');
+		cross.setAttribute('src', 'img/o.png');
 		event.target.appendChild(cross);
 		crossesCombinations.push(event.target.id);
 		checkCombination (crossesCombinations, winningCombinations);
@@ -18,7 +18,7 @@ function todoClickHandler(event) {
 		}
 	} else {
 		var knot = document.createElement('img');
-		knot.setAttribute('src', 'x.png');
+		knot.setAttribute('src', 'img/x.png');
 		event.target.appendChild(knot);
 		knotsCombinations.push(event.target.id);
 		checkCombination (knotsCombinations, winningCombinations);
