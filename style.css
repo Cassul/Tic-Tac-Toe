@@ -1,0 +1,10 @@
+div {
+	height: 300px;
+	border: 1px solid black;
+	}
+
+img {
+    height: 100%;
+    width: 100%; 
+    object-fit: contain;
+}
