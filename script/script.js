@@ -1,5 +1,5 @@
 const field = document.querySelectorAll('.col-sm');
-let counter = 1;
+let counter = 0;
 let crossesCombinations = [];
 let knotsCombinations = [];
 const winningCombinations = [["1","2","3"],["4","5","6"],["7","8" , "9"], ["1", "5", "9"], ["3", "5", "7"], ["1", "4","7"], ["2", "5", "8"], ["3", "6", "9"]];
@@ -7,26 +7,38 @@ let winner;
 
 function todoClickHandler(event) {
 	counter++;
-	if (counter % 2 != 0) {
+	if (counter % 2 == 0) {
 		var cross = document.createElement('img');
 		cross.setAttribute('src', 'img/o.png');
 		event.target.appendChild(cross);
+		writeOnPanel("Player1 made move " + counter);
 		crossesCombinations.push(event.target.id);
 		checkCombination (crossesCombinations, winningCombinations);
 		if (winner=="Winner"){
-			alert('Winner knots');
+			writeOnPanel('Winner knots');
 		}
 	} else {
 		var knot = document.createElement('img');
 		knot.setAttribute('src', 'img/x.png');
 		event.target.appendChild(knot);
+		writeOnPanel("Player1 made move " + counter);
 		knotsCombinations.push(event.target.id);
 		checkCombination (knotsCombinations, winningCombinations);
 		if (winner=="Winner"){
-			alert('Winner crosses');
+			writeOnPanel('Winner crosses');
 		}
 	}
 }
+
+window.onload = writeOnPanel("Player 1 plays crosses" + "\n" + "Player2 plays knots");
+function writeOnPanel (text) {
+	let line = document.createElement('p');
+	let panel = document.querySelector('.panel');
+	panel.appendChild(line);
+	line.textContent = text;
+}
+
+
 field.forEach(function(element) {
 	element.addEventListener('click', todoClickHandler);
 });
