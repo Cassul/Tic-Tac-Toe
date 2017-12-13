@@ -62,3 +62,14 @@ img {
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
+
+
+.time {
+	padding: 30px;
+    text-align: center;
+}
+#timer {
+	display: inline-block;
+    padding: 50px;
+	border: 3px solid red;
+}
