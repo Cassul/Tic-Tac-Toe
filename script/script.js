@@ -8,24 +8,32 @@ let info;
 let knotsWin = 0;
 let crossesWin = 0;
 let numberOfMoves;
+let button = document.getElementById('close');
 
 field.forEach(function(element) {
 	element.addEventListener('click', todoClickHandler);
 });
+var myVar;
+	
 
 function todoClickHandler(event) {
+
+    clearTimeout(myVar);
+
 	if (event.target.childNodes.length == 1) {
 		counter++;
 		if (counter % 2 == 0) {
+			setTimer();
 			var cross = document.createElement('img');
 			cross.setAttribute('src', 'img/o.png');
 			event.target.appendChild(cross);
-			writeOnPanel("Player1 made move " + counter);
+			//timer for the move
 			crossesMoves.push(event.target.id);
 			checkCombination (crossesMoves, winningCombinations);
+			startTimer();
 			if (winner=="Winner"){
 				knotsWin++;
-				alert('Winner knots');
+				alert('Winner is player1');
 				cleanTheBoard();
 				totalWins();
 			}
@@ -35,15 +43,17 @@ function todoClickHandler(event) {
 				totalWins();
 			}
 		} else {
+			setTimer();
 			var knot = document.createElement('img');
 			knot.setAttribute('src', 'img/x.png');
 			event.target.appendChild(knot);
-			writeOnPanel("Player2 made move " + counter);
+			//timer for the move
 			knotsMoves.push(event.target.id);
 			checkCombination (knotsMoves, winningCombinations);
+			startTimer();
 			if (winner=="Winner"){
 				crossesWin++;
-				alert('Winner crosses');
+				alert('Winner is player2');
 				cleanTheBoard();
 				totalWins();
 			}
@@ -58,15 +68,19 @@ function todoClickHandler(event) {
 	}
 }
 
-window.onload = writeOnPanel("Player 1 plays crosses" + "\n" + "Player2 plays knots");
+window.onload = function () {
+	writeOnPanel(knotsWin, ".panel1");
+	writeOnPanel(crossesWin, ".panel2");
+};
 
 function totalWins () {
-	writeOnPanel("Crosses" + "\n" + "total wins: " + crossesWin + "\n" + "Knotes" + "\n" + "total wins: " + knotsWin);
+	    writeOnPanel(knotsWin, ".panel1");
+		writeOnPanel(crossesWin, ".panel2");
 	}
 
-function writeOnPanel (text) {
+function writeOnPanel (text, whatPanel) {
 	let line = document.createElement('p');
-	let panel = document.querySelector('.panel');
+	let panel = document.querySelector(whatPanel);
 	panel.appendChild(line);
 	line.textContent = text;
 }
@@ -102,14 +116,36 @@ function checkCombination (whatToCheck, winningCombinations) {
 	}
 }
 
-function hasImage(id) {
-    var childElements = document.getElementById(id).childNodes;
-    for (var i = 0; i < childElements.length; i++) {
-        if (childElements[i].localName != null && childElements[i].localName.toLowerCase() == "img") {
-            if (childElements[i].getAttribute('src') != null && childElements[i].getAttribute('src').toLowerCase() == "img.jpg") {
-                return true;
-            }
-        }
-    }
-    return false;
+function setTimer() {
+	if (document.getElementById('2').checked) {
+	document.getElementById('timer').innerHTML = 2;
+	} else if (document.getElementById('5').checked) {
+	document.getElementById('timer').innerHTML = 5;
+	} else {
+	document.getElementById('timer').innerHTML = "";
+	}
 }
+
+function startTimer() {
+	if (document.getElementById('timer').innerHTML) {
+		if (document.getElementById('timer').innerHTML>0) {
+		document.getElementById('timer').innerHTML--;
+		myVar = setTimeout(startTimer, 1000);
+		} else {
+		counter++;
+		alert('times up! you lost your move');
+		}
+	} else return true;
+}
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// When the user clicks on the button, open the modal 
+window.onload = function() {
+    modal.style.display = "block";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+button.onclick = function() {
+    modal.style.display = "none";
+};
