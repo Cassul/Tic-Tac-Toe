@@ -16,30 +16,7 @@ img {
 	text-align: center;
 }
 
-.upper-left {
-	border-right: 3px solid black;
-	border-bottom: 3px solid black;
 
-}
-
-.middle {
-	border: 3px solid black;
-}
-
-.bottom-right {
-	border-left: 3px solid black;
-	border-top: 3px solid black;
-}
-
-.bottom-left {
-	border-right: 3px solid black;
-	border-top: 3px solid black;
-}
-
-.upper-right {
-	border-bottom: 3px solid black;
-	border-left: 3px solid black;
-}
 
 .modal {
     display: none; /* Hidden by default */
@@ -72,4 +49,31 @@ img {
 	display: inline-block;
     padding: 50px;
 	border: 3px solid red;
+}
+
+.second-row {
+	border-top: 4px solid red; 
+	border-bottom: 4px solid red;
+}
+
+.upper-left {
+	border-right: 4px solid black;
+}
+
+
+.middle {
+	border-right: 4px solid black;
+	border-left: 4px solid black; 
+}
+
+.bottom-right {
+	border-left: 4px solid black;
+}
+
+.bottom-left {
+	border-right: 4px solid black;
+}
+
+.upper-right {
+	border-left: 4px solid black;
 }
