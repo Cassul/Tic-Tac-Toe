@@ -12,6 +12,7 @@ let knotsWin = 0;
 let crossesWin = 0;
 let numberOfMoves;
 const button = document.getElementById('close');
+const callM = document.getElementById('callModal');
 let player1;
 let player2;
 var myVar;
@@ -175,6 +176,10 @@ window.onload = function() {
     modal.style.display = "block";
 };
 
+callM.onclick = function() {
+    modal.style.display = "block";	
+};
+
 // When the user clicks anywhere outside of the modal, close it
 button.onclick = function() {
 	player1 = document.getElementById('name1').value;
@@ -184,7 +189,18 @@ button.onclick = function() {
     if (player1 && player2) {
     document.getElementById('playerName1').innerHTML = player1;
     document.getElementById('playerName2').innerHTML = player2;
-}
+	}
+	if (document.getElementById('radiohead').checked) {
+		let music = document.createElement('audio');
+		music.setAttribute('src', "music/radiohead.mp3");
+		music.setAttribute('autoplay','');
+		document.getElementById('music').appendChild(music);
+	} else if (document.getElementById('doors').checked) {
+		let music = document.createElement('audio');
+		music.setAttribute('src', "music/doors.mp3");
+		music.setAttribute('autoplay','');
+		document.getElementById('music').appendChild(music);
+	} 
 };
 
 function changeBoards () {

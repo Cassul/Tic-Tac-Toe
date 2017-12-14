@@ -54,10 +54,13 @@ img {
 }
 
 
-.time {
+.time, .go {
 	padding: 30px;
-    text-align: center;
+	display: flex;
+	justify-content: center;
 }
+
+
 #timer {
 	display: inline-block;
     padding: 30px;
@@ -135,7 +138,7 @@ img {
 	border-right: 4px solid #dbcad7;
 } 
 
-.container-fluid {
-	margin: 0 auto;
-    width: 80%;
+.callModal {
+	display: flex;
+	justify-content: center;
 }

@@ -24,8 +24,14 @@
 				</div>
 				<div class="col-sm grids">
 					<p>Choose grid type</p>
-					<input type="radio" id="grid1" name="grid1"> 4*4
-					<input type="radio" id="grid2" name="grid2"> 3*3
+					<input type="radio" id="grid1" name="grid"> 4*4
+					<input type="radio" id="grid2" name="grid"> 3*3
+				</div>
+				<div class="col-sm grids">
+					<p>Music</p>
+					<input type="radio" id="doors" name="music"> Doors
+					<input type="radio" id="radiohead" name="music"> Radiohead
+					<input type="radio" id="silence" name="music"> Off
 				</div>
 			</div>
 		</div>
@@ -117,13 +123,19 @@
 	      			<div class="col-sm panel2"></div>
 	      		</div>
 	      		<div class="row time">
-	      			<div id="timer"></div>
+	      			<div class="col-sm" id="timer"></div>
 	      		</div>
-	      		<div class="row move">
-	      			<div id="go"></div>
+	      		<div class="row go">
+	      			<div class="col-sm" id="go">
+	      			</div>
+	      		</div>
+	      		<div class="row callModal">
+	      			<button id="callModal">Settings</button>
 	      		</div>
 	      	</div>
 	      </div>
+	      <div id="music">
+	</div>
 	</div>
 	<script type="text/javascript" src="script/script.js"></script>
 </body>
