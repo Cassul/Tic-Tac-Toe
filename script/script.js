@@ -1,25 +1,25 @@
-const field = document.querySelectorAll('.col-sm');
+const board = document.querySelectorAll('.board');
 let counter = 0;
 let crossesMoves = [];
 let knotsMoves = [];
 const winningCombinations = [["1","2","3"],["4","5","6"],["7","8" , "9"], ["1", "5", "9"], ["3", "5", "7"], ["1", "4","7"], ["2", "5", "8"], ["3", "6", "9"]];
 let winner;
-let info;
 let knotsWin = 0;
 let crossesWin = 0;
 let numberOfMoves;
-let button = document.getElementById('close');
+const button = document.getElementById('close');
+let player1;
+let player2;
 
-field.forEach(function(element) {
+board.forEach(function(element) {
 	element.addEventListener('click', todoClickHandler);
 });
 var myVar;
 	
 
 function todoClickHandler(event) {
-
     clearTimeout(myVar);
-
+    console.log(event.target);
 	if (event.target.childNodes.length == 1) {
 		counter++;
 		if (counter % 2 == 0) {
@@ -27,10 +27,8 @@ function todoClickHandler(event) {
 			var cross = document.createElement('img');
 			cross.setAttribute('src', 'img/o.png');
 			event.target.appendChild(cross);
-			//timer for the move
 			crossesMoves.push(event.target.id);
 			checkCombination (crossesMoves, winningCombinations);
-			startTimer();
 			if (winner=="Winner"){
 				knotsWin++;
 				alert('Winner is player1');
@@ -47,10 +45,8 @@ function todoClickHandler(event) {
 			var knot = document.createElement('img');
 			knot.setAttribute('src', 'img/x.png');
 			event.target.appendChild(knot);
-			//timer for the move
 			knotsMoves.push(event.target.id);
 			checkCombination (knotsMoves, winningCombinations);
-			startTimer();
 			if (winner=="Winner"){
 				crossesWin++;
 				alert('Winner is player2');
@@ -111,6 +107,7 @@ function checkCombination (whatToCheck, winningCombinations) {
 			}
 			if (counter1 == 3) {
 				winner = "Winner";
+				whatToCross = winningCombinations[i];
 			}
 		}
 	}
@@ -118,16 +115,18 @@ function checkCombination (whatToCheck, winningCombinations) {
 
 function setTimer() {
 	if (document.getElementById('2').checked) {
-	document.getElementById('timer').innerHTML = 2;
+	document.getElementById('timer').innerHTML = 3;
+	startTimer();
 	} else if (document.getElementById('5').checked) {
-	document.getElementById('timer').innerHTML = 5;
+	document.getElementById('timer').innerHTML = 6;
+	startTimer();
 	} else {
-	document.getElementById('timer').innerHTML = "";
+	document.getElementById('timer').innerHTML = "&#8734;";
 	}
 }
 
-function startTimer() {
-	if (document.getElementById('timer').innerHTML) {
+function startTimer() { 
+
 		if (document.getElementById('timer').innerHTML>0) {
 		document.getElementById('timer').innerHTML--;
 		myVar = setTimeout(startTimer, 1000);
@@ -135,7 +134,7 @@ function startTimer() {
 		counter++;
 		alert('times up! you lost your move');
 		}
-	} else return true;
+	
 }
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -147,5 +146,11 @@ window.onload = function() {
 
 // When the user clicks anywhere outside of the modal, close it
 button.onclick = function() {
+	player1 = document.getElementById('name1').value;
+	player2  = document.getElementById('name2').value;
     modal.style.display = "none";
+    if (player1 && player2) {
+    writeOnPanel(player1, ".playerName1");
+    writeOnPanel(player2, ".playerName2");
+}
 };

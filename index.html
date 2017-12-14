@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
@@ -10,11 +10,24 @@
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<div class="row">
-				<p>Choose move time</p>
-				<input type="radio" id="2" name="time"> 2 seconds
-				<input type="radio" id="5" name="time"> 5 seconds
-				<input type="radio" id="0" name="time" checked="checked"> without timer
-				<button id="close">close</button>
+				<div class="times col-sm">
+					<p>Choose move time</p>
+					<input type="radio" id="2" name="time"> 2 seconds
+					<input type="radio" id="5" name="time"> 5 seconds
+					<input type="radio" id="0" name="time" checked="checked"> without timer
+					<button id="close">close</button>
+				</div>
+				<div class="col-sm names">
+					<p>write players names</p>
+					<input type="text" name="name1" id="name1"> Player 1 name
+					<input type="text" name="name2" id="name2"> Player 2 name					
+				</div>
+				<div class="col-sm grids">
+					<p>Choose grid type</p>
+					<input type="radio" id="grid1" name="grid1"> 6*6
+					<input type="radio" id="grid2" name="grid2"> 5*5
+					<input type="radio" id="grid3" name="grid3" checked="checked"> 3*3
+				</div>
 			</div>
 		</div>
   	</div>
@@ -24,28 +37,28 @@
 		<div class="row">
 			<div class="firstColumn col-sm-8">
 			 <div class="first-row row">
-	              <div class="col-sm upper-left" id="1"> 
+	              <div class="col-sm board upper-left" id="1"> 
 	              </div>
-	              <div class="col-sm middle-top" id="2">
+	              <div class="col-sm board middle-top" id="2">
 	              </div>
-	              <div class="col-sm upper-right" id="3">
+	              <div class="col-sm board upper-right" id="3">
 	              </div>
 	          </div>
 	          <div class="second-row row">
-		          <div class="col-sm middle-left" id="4">
+		          <div class="col-sm board middle-left" id="4">
 		          </div>
-		          <div class="col-sm middle" id="5">
+		          <div class="col-sm board middle" id="5">
 		          	
 		          </div>
-		          <div class="col-sm middle-right" id="6">
+		          <div class="col-sm board middle-right" id="6">
 		          </div>
 	          </div>
 	          <div class="third-row row">
-		          <div class="col-sm bottom-left" id="7">
+		          <div class="col-sm board bottom-left" id="7">
 		          </div>
-		          <div class="col-sm middle-bottom" id="8">
+		          <div class="col-sm board middle-bottom" id="8">
 		          </div>
-		          <div class="col-sm bottom-right" id="9">
+		          <div class="col-sm board bottom-right" id="9">
 		          </div>
 	          </div>
 	      	</div>
@@ -53,6 +66,10 @@
 	      		<div class="row">
 	      			<div class="col-sm"><h1>Player 1</h1></div>
 	      			<div class="col-sm"><h1>Player 2</h1></div>
+	      		</div>
+	      		<div class="row playersNames">
+	      			<div class="col-sm playerName1"></div>
+	      			<div class="col-sm playerName2"></div>
 	      		</div>
 	      		<div class="row">
 	      			<div class="col-sm panel1"></div>
