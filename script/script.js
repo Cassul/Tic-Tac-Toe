@@ -15,15 +15,18 @@ const button = document.getElementById('close');
 let player1;
 let player2;
 var myVar;
+let numberOfCells;
 
 function setBoard() {
 	if (document.getElementById('grid1').checked) {
 		board = document.querySelectorAll('.board4');
 		changeBoards();
 		winningCombinations = winningCombinations4;
+		numberOfCells = 16;
 	} else  {
 		board = document.querySelectorAll('.board3');
 		winningCombinations = winningCombinations3;
+		numberOfCells = 9;
 	}
 	board.forEach(function(element) {
 	element.addEventListener('click', todoClickHandler);
@@ -51,7 +54,7 @@ function todoClickHandler(event) {
 				totalWins();
 				whoseMove();
 			}
-			if (knotsMoves.length + crossesMoves.length == 9 && winner!="Winner") {
+			if (knotsMoves.length + crossesMoves.length == numberOfCells && winner!="Winner") {
 				alert('You both lost');
 				cleanTheBoard();
 				totalWins();
@@ -72,7 +75,7 @@ function todoClickHandler(event) {
 				totalWins();
 				whoseMove();
 			}
-			if (knotsMoves.length + crossesMoves.length == 9 && winner!="Winner") {
+			if (knotsMoves.length + crossesMoves.length == numberOfCells && winner!="Winner") {
 				alert('You both lost');
 				cleanTheBoard();
 				totalWins();
