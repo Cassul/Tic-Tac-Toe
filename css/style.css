@@ -102,3 +102,20 @@ img {
 	font-size: 15px;
 	background-color: beige; 
 }
+
+#board4 {
+	display: none;
+}
+
+.secondRow {
+	border-top: 4px solid red; 
+	border-bottom: 4px solid red;
+}
+
+.thirdRow {
+	border-bottom: 4px solid red;
+}
+
+.i1, .i2, .i3, .i5, .i6, .i7, .i9, .i10, .i11, .i13, .i14, .i15  {
+	border-right: 4px solid black;
+} 

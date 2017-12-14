@@ -1,8 +1,12 @@
-const board = document.querySelectorAll('.board');
+let board;
+const board3 = document.getElementById('board3');
+const board4 = document.getElementById('board4');
 let counter = 0;
 let crossesMoves = [];
 let knotsMoves = [];
-const winningCombinations = [["1","2","3"],["4","5","6"],["7","8" , "9"], ["1", "5", "9"], ["3", "5", "7"], ["1", "4","7"], ["2", "5", "8"], ["3", "6", "9"]];
+let winningCombinations;
+const winningCombinations3 = [["1","2","3"],["4","5","6"],["7","8" , "9"], ["1", "5", "9"], ["3", "5", "7"], ["1", "4","7"], ["2", "5", "8"], ["3", "6", "9"]];
+const winningCombinations4 = [["1","2","3"], ["5","6","7"], ["9","10","11"], ["13","14","15"], ["2","3","4"], ["6","7","8"], ["10","11","12"], ["14","15","16"], ["1","5","9"], ["2","6","10"], ["3","7","11"], ["4","8","12"], ["5","9","13"], ["6","10","14"], ["7","11","15"], ["8","12","16"], ["1","6","11"], ["5","10","15"], ["6","11","16"], ["2","7","12"], ["9","6","3"], ["10","7","4"], ["13","10","7"], ["14","11","8"]];
 let winner;
 let knotsWin = 0;
 let crossesWin = 0;
@@ -10,22 +14,31 @@ let numberOfMoves;
 const button = document.getElementById('close');
 let player1;
 let player2;
-
-board.forEach(function(element) {
-	element.addEventListener('click', todoClickHandler);
-});
 var myVar;
+function setBoard() {
+	if (document.getElementById('grid1').checked) {
+		board = document.querySelectorAll('.board4');
+		changeBoards();
+		winningCombinations = winningCombinations4;
+	} else  {
+		board = document.querySelectorAll('.board3');
+		winningCombinations = winningCombinations3;
+	}
+	board.forEach(function(element) {
+	element.addEventListener('click', todoClickHandler);
+	});
+}
 	
 
 function todoClickHandler(event) {
     clearTimeout(myVar);
-    console.log(event.target);
 	if (event.target.childNodes.length == 1) {
 		counter++;
 		if (counter % 2 == 0) {
 			setTimer();
 			var cross = document.createElement('img');
 			cross.setAttribute('src', 'img/o.png');
+			console.log(event.target);
 			event.target.appendChild(cross);
 			crossesMoves.push(event.target.id);
 			checkCombination (crossesMoves, winningCombinations);
@@ -149,8 +162,14 @@ button.onclick = function() {
 	player1 = document.getElementById('name1').value;
 	player2  = document.getElementById('name2').value;
     modal.style.display = "none";
+    setBoard();
     if (player1 && player2) {
     writeOnPanel(player1, ".playerName1");
     writeOnPanel(player2, ".playerName2");
 }
 };
+
+function changeBoards () {
+	board3.style.display = "none";
+	board4.style.display = "block";
+}
