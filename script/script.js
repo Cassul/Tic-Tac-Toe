@@ -53,12 +53,17 @@ function todoClickHandler(event) {
 				cleanTheBoard();
 				totalWins();
 				whoseMove();
+				counter = 0;
+				clearTimeout(myVar);
+
 			}
 			if (knotsMoves.length + crossesMoves.length == numberOfCells && winner!="Winner") {
 				alert('You both lost');
 				cleanTheBoard();
 				totalWins();
 				whoseMove();
+		        clearTimeout(myVar);
+
 			}
 		} else {
 			setTimer();
@@ -74,12 +79,16 @@ function todoClickHandler(event) {
 				cleanTheBoard();
 				totalWins();
 				whoseMove();
+				counter = 1;
+				clearTimeout(myVar);
+
 			}
 			if (knotsMoves.length + crossesMoves.length == numberOfCells && winner!="Winner") {
 				alert('You both lost');
 				cleanTheBoard();
 				totalWins();
 				whoseMove();
+				clearTimeout(myVar);
 			}
 		}
 	} else {
@@ -115,7 +124,6 @@ function cleanTheBoard () {
 	}
 	crossesMoves = [];
 	knotsMoves = [];
-	counter = 0;
 	winner = 0;
 }
 
@@ -174,8 +182,8 @@ button.onclick = function() {
     modal.style.display = "none";
     setBoard();
     if (player1 && player2) {
-    writeOnPanel(player1, ".playerName1");
-    writeOnPanel(player2, ".playerName2");
+    document.getElementById('playerName1').innerHTML = player1;
+    document.getElementById('playerName2').innerHTML = player2;
 }
 };
 
