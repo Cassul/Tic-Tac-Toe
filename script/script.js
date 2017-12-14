@@ -15,6 +15,7 @@ const button = document.getElementById('close');
 let player1;
 let player2;
 var myVar;
+
 function setBoard() {
 	if (document.getElementById('grid1').checked) {
 		board = document.querySelectorAll('.board4');
@@ -36,40 +37,46 @@ function todoClickHandler(event) {
 		counter++;
 		if (counter % 2 == 0) {
 			setTimer();
-			var cross = document.createElement('img');
-			cross.setAttribute('src', 'img/o.png');
+			var knots = document.createElement('img');
+			knots.setAttribute('src', 'img/o.png');
 			console.log(event.target);
-			event.target.appendChild(cross);
-			crossesMoves.push(event.target.id);
-			checkCombination (crossesMoves, winningCombinations);
-			if (winner=="Winner"){
-				knotsWin++;
-				alert('Winner is player1');
-				cleanTheBoard();
-				totalWins();
-			}
-			if (knotsMoves.length + crossesMoves.length == 9 && winner!="Winner") {
-				alert('You both lost');
-				cleanTheBoard();
-				totalWins();
-			}
-		} else {
-			setTimer();
-			var knot = document.createElement('img');
-			knot.setAttribute('src', 'img/x.png');
-			event.target.appendChild(knot);
+			event.target.appendChild(knots);
 			knotsMoves.push(event.target.id);
 			checkCombination (knotsMoves, winningCombinations);
+			whoseMove();
 			if (winner=="Winner"){
-				crossesWin++;
+				knotsWin++;
 				alert('Winner is player2');
 				cleanTheBoard();
 				totalWins();
+				whoseMove();
 			}
 			if (knotsMoves.length + crossesMoves.length == 9 && winner!="Winner") {
 				alert('You both lost');
 				cleanTheBoard();
 				totalWins();
+				whoseMove();
+			}
+		} else {
+			setTimer();
+			var crosses = document.createElement('img');
+			crosses.setAttribute('src', 'img/x.png');
+			event.target.appendChild(crosses);
+			crossesMoves.push(event.target.id);
+			checkCombination (crossesMoves, winningCombinations);
+			whoseMove();
+			if (winner=="Winner"){
+				crossesWin++;
+				alert('Winner is player1');
+				cleanTheBoard();
+				totalWins();
+				whoseMove();
+			}
+			if (knotsMoves.length + crossesMoves.length == 9 && winner!="Winner") {
+				alert('You both lost');
+				cleanTheBoard();
+				totalWins();
+				whoseMove();
 			}
 		}
 	} else {
@@ -78,13 +85,13 @@ function todoClickHandler(event) {
 }
 
 window.onload = function () {
-	writeOnPanel(knotsWin, ".panel1");
-	writeOnPanel(crossesWin, ".panel2");
+	writeOnPanel(knotsWin, ".panel2");
+	writeOnPanel(crossesWin, ".panel1");
 };
 
 function totalWins () {
-	    writeOnPanel(knotsWin, ".panel1");
-		writeOnPanel(crossesWin, ".panel2");
+	    writeOnPanel(crossesWin, ".panel1");
+		writeOnPanel(knotsWin, ".panel2");
 	}
 
 function writeOnPanel (text, whatPanel) {
@@ -172,4 +179,21 @@ button.onclick = function() {
 function changeBoards () {
 	board3.style.display = "none";
 	board4.style.display = "block";
+}
+
+function whoseMove () {
+	if (counter % 2 == 0) {
+		console.log('hey');
+		if(player1) {
+		document.getElementById('go').innerHTML = player1 + " your move!";	
+		} else {
+		document.getElementById('go').innerHTML = "Player 1" + " your move!";			
+		}	
+	} else { 
+		if (player2) {
+		document.getElementById('go').innerHTML = player2 + " your move!";
+		} else {
+		document.getElementById('go').innerHTML = "Player 2" + " your move!";					
+		}
+	}
 }
