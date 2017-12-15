@@ -1,8 +1,13 @@
+* {
+	color: #985a89;
+	font-family: 'Lobster', cursive;
+}
+
 body {
 	color: #dbcad7;
+	font-family: 'Lobster', cursive;
 	background: linear-gradient(270deg, #dbcad7, #bf8cb3, #985a89);
 	background-size: 600% 600%;
-
 	animation: AnimationName 47s ease infinite;
 }
 @keyframes AnimationName { 
@@ -138,7 +143,7 @@ img {
 	border-right: 4px solid #dbcad7;
 } 
 
-.callModal {
+.callModal, .closeButton {
 	display: flex;
 	justify-content: center;
 }

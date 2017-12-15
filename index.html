@@ -5,6 +5,7 @@
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 </head>
 <body>
 	<div id="myModal" class="modal">
@@ -15,7 +16,6 @@
 					<input type="radio" id="2" name="time"> 2 seconds
 					<input type="radio" id="5" name="time"> 5 seconds
 					<input type="radio" id="0" name="time" checked="checked"> without timer
-					<button id="close">close</button>
 				</div>
 				<div class="col-sm names">
 					<p>write players names</p>
@@ -37,6 +37,9 @@
 					<input type="text" id="crossPic" name="pix">set image for player 1
 					<input type="text" id="knotsPic" name="pix">set image for player 2
 				</div>
+			</div>
+			<div class="row closeButton">
+				<button class="btn btn-light" id="close">close</button>
 			</div>
 		</div>
   	</div>
@@ -134,7 +137,7 @@
 	      			</div>
 	      		</div>
 	      		<div class="row callModal">
-	      			<button id="callModal">Settings</button>
+	      			<button class="btn btn-light" id="callModal">Settings</button>
 	      		</div>
 	      	</div>
 	      </div>

@@ -203,7 +203,10 @@ button.onclick = function() {
 		music.setAttribute('src', "music/doors.mp3");
 		music.setAttribute('autoplay','');
 		document.getElementById('music').appendChild(music);
-	} 
+	} else {
+		document.getElementById('music').removeChild(music);
+		music = undefined;
+	}
 };
 
 function setBoard() {
