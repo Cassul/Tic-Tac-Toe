@@ -1,6 +1,6 @@
 # Tic-Tac-Toe	
 
-####Game is built using JavaScript and styled with Bootstrap
+#### Game is built using JavaScript and styled with Bootstrap
 
 main core of a script - functions that triggered by user: 
 
@@ -61,3 +61,9 @@ callM.onclick = function() {
     modal.style.display = "block";	
 };										   //clicking settings shows modal box again
 ```
+
+### Hard moments
+
+1. Styling of an app. Strikethrough of a line
+2. Setting of a timer. Using of a clearTimeout()
+3. Adding music to a game
