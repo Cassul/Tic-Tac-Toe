@@ -17,23 +17,19 @@ let player1;
 let player2;
 var myVar;
 let numberOfCells;
+let source;
+let source2;
 
-function setBoard() {
-	if (document.getElementById('grid1').checked) {
-		board = document.querySelectorAll('.board4');
-		changeBoards();
-		winningCombinations = winningCombinations4;
-		numberOfCells = 16;
-	} else  {
-		board = document.querySelectorAll('.board3');
-		winningCombinations = winningCombinations3;
-		numberOfCells = 9;
-	}
-	board.forEach(function(element) {
-	element.addEventListener('click', todoClickHandler);
-	});
+ function setImage () {
+ 	source = document.getElementById('knotsPic').value;
+if (!source) {
+	source = 'img/o.png';
 }
-	
+ source2 = document.getElementById('crossPic').value;
+if (!source2) {
+	source2 = 'img/x.png';
+}
+}
 
 function todoClickHandler(event) {
     clearTimeout(myVar);
@@ -42,8 +38,7 @@ function todoClickHandler(event) {
 		if (counter % 2 == 0) {
 			setTimer();
 			var knots = document.createElement('img');
-			knots.setAttribute('src', 'img/o.png');
-			console.log(event.target);
+			knots.setAttribute('src', source);
 			event.target.appendChild(knots);
 			knotsMoves.push(event.target.id);
 			checkCombination (knotsMoves, winningCombinations);
@@ -69,7 +64,7 @@ function todoClickHandler(event) {
 		} else {
 			setTimer();
 			var crosses = document.createElement('img');
-			crosses.setAttribute('src', 'img/x.png');
+			crosses.setAttribute('src', source2);
 			event.target.appendChild(crosses);
 			crossesMoves.push(event.target.id);
 			checkCombination (crossesMoves, winningCombinations);
@@ -93,7 +88,7 @@ function todoClickHandler(event) {
 			}
 		}
 	} else {
-		alert('dont click cells twice, you idiot');
+		alert('dont click cells twice, pridurok');
 	}
 }
 
@@ -144,7 +139,6 @@ function checkCombination (whatToCheck, winningCombinations) {
 		}
 	}
 }
-
 function setTimer() {
 	if (document.getElementById('2').checked) {
 	document.getElementById('timer').innerHTML = 3;
@@ -168,10 +162,8 @@ function startTimer() {
 		}
 	
 }
-// Get the modal
-var modal = document.getElementById('myModal');
+const modal = document.getElementById('myModal');
 
-// When the user clicks on the button, open the modal 
 window.onload = function() {
     modal.style.display = "block";
 };
@@ -179,38 +171,68 @@ window.onload = function() {
 callM.onclick = function() {
     modal.style.display = "block";	
 };
-
-// When the user clicks anywhere outside of the modal, close it
+let music;
 button.onclick = function() {
+	setImage();
 	player1 = document.getElementById('name1').value;
 	player2  = document.getElementById('name2').value;
     modal.style.display = "none";
+    cleanTheBoard();
+    changeBoards();
+    clearTimeout(myVar);
+    counter = 0;
     setBoard();
+    totalWins ();
     if (player1 && player2) {
     document.getElementById('playerName1').innerHTML = player1;
     document.getElementById('playerName2').innerHTML = player2;
 	}
 	if (document.getElementById('radiohead').checked) {
-		let music = document.createElement('audio');
+		if (music != undefined) {
+			document.getElementById('music').removeChild(music);
+		}
+		music = document.createElement('audio');
 		music.setAttribute('src', "music/radiohead.mp3");
 		music.setAttribute('autoplay','');
 		document.getElementById('music').appendChild(music);
 	} else if (document.getElementById('doors').checked) {
-		let music = document.createElement('audio');
+		if (music != undefined) {
+			document.getElementById('music').removeChild(music);
+		}
+		music = document.createElement('audio');
 		music.setAttribute('src', "music/doors.mp3");
 		music.setAttribute('autoplay','');
 		document.getElementById('music').appendChild(music);
 	} 
 };
 
+function setBoard() {
+	if (document.getElementById('grid1').checked) {
+		board = document.querySelectorAll('.board4');
+		winningCombinations = winningCombinations4;
+		numberOfCells = 16;
+	} else  {
+		board = document.querySelectorAll('.board3');
+		winningCombinations = winningCombinations3;
+		numberOfCells = 9;
+	}
+	board.forEach(function(element) {
+	element.addEventListener('click', todoClickHandler);
+	});
+}
+
 function changeBoards () {
+	if (document.getElementById('grid1').checked) {
 	board3.style.display = "none";
 	board4.style.display = "block";
+	} else {
+	board3.style.display = "block";
+	board4.style.display = "none";
+	}
 }
 
 function whoseMove () {
 	if (counter % 2 == 0) {
-		console.log('hey');
 		if(player1) {
 		document.getElementById('go').innerHTML = player1 + " your move!";	
 		} else {
