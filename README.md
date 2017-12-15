@@ -1,10 +1,25 @@
 # Tic-Tac-Toe	
 
-#### Game is built using JavaScript and styled with Bootstrap
+#### App allows player to choose between 3x3 and 4x4 grids, set "cross" and "knot" images, play music, set players names and store rounds scores
+
+### HTML 
+
+* Modal box
+* Container-fluid
+	* Grid 3x3
+	* Grid 4x4
+	* Players panel
+Grid consist of "empty" divs, images of knots and crosses created by JS DOM
+
+### CSS 
+
+I used Bootstrap, Lobster font and animated linear-gradient background
+
+### JavaScript
 
 main core of a script - functions that triggered by user: 
 
-1. by clicking on a close button on modal box(it's display: none but changes on window.load)
+1. by clicking on a close button on modal box(it's display:none initially but changes on window.load)
 ``` 
 *Pseudocode*
 
